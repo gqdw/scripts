@@ -1,8 +1,9 @@
 #/bin/bash
 #2014-10-31 11:12:54
 . /etc/init.d/functions
-prog=/usr/local/nginx/sbin/nginx
-progname=`basename $prog`
+exe=/usr/local/nginx/sbin/nginx
+prog=`basename $exe`
+LOCKFILE=/var/lock/subsys/$prog
 start(){
 	[ $EUID -ne 0 ] && exit 4
 	echo -n $"Starting $prog: "
