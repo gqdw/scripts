@@ -9,7 +9,7 @@ start(){
 	echo -n $"Starting $prog: "
 	daemon $prog $OPTIONS
 	RETVAL=$?
-#	[ $RETVAL -eq 0 ] && echo "start success"
+	[ $RETVAL -eq 0 ] && touch $LOCKFILE
 	echo 
 	return $RETVAL
 }
@@ -19,7 +19,7 @@ stop(){
 	killproc $prog
 	RETVAL=$?
 	echo 
-#	[ "$?" -eq 0 ] && echo "stop success"
+	[ "$?" -eq 0 ] && rm -f $LOCKFILE
 	return $RETVAL
 }
 
