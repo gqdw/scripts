@@ -1,5 +1,5 @@
 #/bin/bash
-#
+#2014-10-31 11:12:54
 . /etc/init.d/functions
 prog=/usr/local/nginx/sbin/nginx
 progname=`basename $prog`
