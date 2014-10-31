@@ -43,5 +43,5 @@ case "$1" in
         exit 3
         ;;
   *)
-	echo "usage: "
+	echo "usage: $0 start/stop/restart"
 esac
