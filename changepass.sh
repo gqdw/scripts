@@ -10,7 +10,7 @@ if [ $# -ne 1 ];then
 else
 	len=$1
 fi
-PASS=`cat /dev/urandom |tr -cd '0-9a-z'|head -c $len`
-hostname
+PASS=`cat /dev/urandom |tr -cd '0-9a-zA-Z'|head -c $len`
+#hostname
 #echo "danqoo:$PASS"| chpasswd 
 echo "$PASS"
