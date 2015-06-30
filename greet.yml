@@ -1,0 +1,9 @@
+---
+  - name: pass
+    hosts: localhost
+    vars:
+      greeting: "{{ ansible_all_ipv4_addresses }}"
+      #greeting: "you didn't "
+    tasks:
+      - name: output a message
+        debug: msg="{{ greeting }}"
