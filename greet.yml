@@ -7,3 +7,7 @@
     tasks:
       - name: output a message
         debug: msg="{{ greeting }}"
+      - name: capture output of id command
+        command: id -un
+        register: login
+      - debug: msg="{{ login.stdout }}"

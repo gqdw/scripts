@@ -7,13 +7,14 @@ class timelog:
 
 	def __init__(self):
 		self.start_time = datetime.now()
-		print "Timer plugin is active."
+		print "class timelog is active."
 #print "will sleep 4"
 #time.sleep(4)
 	def end(self):
 		self.end_time = datetime.now()
 	def p(self):
-		print "past %d seconds\n" % ((self.end_time - self.start_time).seconds)
+		print "past %d microseconds\n" % ((self.end_time - self.start_time).microseconds)
+		#print "past %d seconds\n" % ((self.end_time - self.start_time).seconds)
 
 tl = timelog()
 time.sleep(3)
