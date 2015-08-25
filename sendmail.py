@@ -7,8 +7,7 @@ def sendmail(to,subject,message):
 	passwd='xxx'
 	#to='332305654@qq.com'
 	
-	msg=MIMEText(message)
-	
+	msg=MIMEText(message.encode('utf-8'),'plain','utf-8')
 	msg["Subject"] = 	subject	
 	msg['From']	=	user
 	msg['to']	=	to
@@ -19,5 +18,5 @@ def sendmail(to,subject,message):
 	s.close()
 
 
-sendmail('332305654@qq.com',"标题","信息")
+sendmail('332305654@qq.com',"标题",u"信息")
 
