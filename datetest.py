@@ -16,4 +16,5 @@ timestamp = time.mktime(t.timetuple())
 print timestamp
 print time.mktime(t2.timetuple())
 
-
+import pytz 
+tz = pytz.timezone('Asia/Shanghai')
