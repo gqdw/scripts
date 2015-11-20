@@ -14,3 +14,15 @@ def intersect(seq1, seq2):
 s1 = 'spam'
 s2 = 'scam'
 print intersect(s1, s2)
+
+
+class Third():
+	def __init__(self, value):
+		self.data = value
+	
+
+	def __add__(self, other):
+		return self.data + other
+
+t1 = Third(11)
+print (t1 + 9)
