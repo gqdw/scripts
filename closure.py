@@ -24,3 +24,6 @@ def func():
 x = func()
 print x(2)
 
+
+lower = (lambda x, y: x if x<y else y)
+print lower(2,3)
