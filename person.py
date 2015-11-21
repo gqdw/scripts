@@ -1,10 +1,11 @@
 #!/usr/bin/env python
+"""
+for test class
+"""
 
-"""
-for test class 
-"""
 
 class Person:
+
 	def __init__(self, name, job=None, pay=0):
 		self.name = name
 		self.job = job
