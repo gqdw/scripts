@@ -26,3 +26,11 @@ class Third():
 
 t1 = Third(11)
 print (t1 + 9)
+
+
+class Inder():
+	def __getitem__(self, index):
+		return index*2
+
+x = Inder()
+print x[2], x[3]
