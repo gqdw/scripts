@@ -1,0 +1,9 @@
+---
+- hosts: all
+#- hosts: neiwang
+  remote_user: root
+#  sudo: yes
+  tasks: 
+    - name: sync date
+#      cron: name="sync date" minute="*" hour="0" job="/usr/sbin/ntpdate 0.cn.pool.ntp.org>>/tmp/sync.log 2>&1"
+      cron: name="sync date" minute="0" hour="0" job="/usr/sbin/ntpdate 10.168.101.243>>/tmp/sync.log 2>&1"
