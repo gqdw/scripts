@@ -1,0 +1,11 @@
+---
+- hosts: test
+  user: root
+  tasks:
+  - name: startup tomcat
+    shell: /usr/local/apache-tomcat-7.0.54/bin/startup.sh
+    register: stadby_check
+    poll: 0
+    async: 15
+    tags: tomcat
+  - debug: var=stadby_check
