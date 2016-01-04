@@ -1,4 +1,11 @@
 ---
+- name: test
+  hosts: test
+  tasks:
+    - name: date
+      command: date
+      register: d
+    - debug: msg="{{d }}"
 - name: pass
   hosts: localhost
   vars:
