@@ -1,0 +1,31 @@
+---
+- name: get war from jenkins
+  hosts: jenkins
+  user: root
+  tasks:
+    - name: get nami.war from jenkins
+      fetch: src=/var/lib/jenkins/workspace/master-nami/target/nami.war dest=files/nami.war flat=yes
+
+- name: do with tomcat
+  hosts: nami
+  user: root
+  tasks:
+
+    - name: stop tomcat
+      shell: /usr/local/apache-tomcat-7.0.54/bin/shutdown.sh
+      async: 40
+      poll: 0
+
+    - name: wait 8080 stopped
+      wait_for: port=8080 state=stopped
+
+    - name: rm nami
+      shell: rm -rf /usr/local/apache-tomcat-7.0.54/webapps/nami*
+
+    - name: copy nami.war
+      copy: src=files/nami.war dest=/usr/local/apache-tomcat-7.0.54/webapps/nami.war
+
+    - name: start tomcat
+      shell: /usr/local/apache-tomcat-7.0.54/bin/startup.sh
+      async: 40
+      poll: 0
