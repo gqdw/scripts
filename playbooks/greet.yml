@@ -11,6 +11,13 @@
   vars:
     greeting: "{{ ansible_all_ipv4_addresses }}"
     #greeting: "you didn't "
+    from: "camelot"
+    # from: "some password"
+  vars_prompt:
+    - name: "camelot"
+      prompt: "enter password"
+      private: no
+      # private: yes
   tasks:
     - name: output a message
       debug: msg="{{ greeting }}"
@@ -18,3 +25,4 @@
       command: id -un
       register: login
     - debug: msg="{{ login.stdout }}"
+    - debug: msg="{{ camelot }}"
