@@ -6,6 +6,7 @@
       command: date
       register: d
     - debug: msg="{{d }}"
+    - debug: var=d
 - name: pass
   hosts: localhost
   vars:
