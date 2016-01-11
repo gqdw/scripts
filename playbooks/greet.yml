@@ -14,12 +14,15 @@
     #greeting: "you didn't "
     from: "camelot"
     # from: "some password"
+    test: "this is a default var"
   vars_prompt:
     - name: "camelot"
       prompt: "enter password"
       private: no
       # private: yes
   tasks:
+    - name: print test var
+      debug: var=test
     - name: output a message
       debug: msg="{{ greeting }}"
     - name: capture output of id command
