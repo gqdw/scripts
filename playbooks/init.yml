@@ -1,0 +1,36 @@
+---
+- hosts: do
+  user: aca
+  sudo: yes
+  vars: 
+    - myhome: 
+
+#  vars_prompt:
+#    - name: myhome
+#      prompt: "input the hostname"     
+#      private: no
+  tasks:
+#    - debug: var=myhome 
+#    - hostname: name={{myhome}}
+    - user: name=aca
+    - user: name=steven
+    - user: name=huyong
+    - authorized_key: user=aca key="{{ item }}"
+      with_file:
+        - public_keys/aca
+    - authorized_key: user=steven key="{{ item }}"
+      with_file:
+        - public_keys/steven
+
+    - authorized_key: user=huyong key="{{ item }}"
+      with_file:
+        - public_keys/huyong
+
+    - replace: dest=/etc/ssh/sshd_config regexp='^PasswordAuthentication yes' replace='PasswordAuthentication no'
+      notify: restart sshd
+    - lineinfile: "dest=/etc/sudoers line='steven	ALL=(ALL) 	NOPASSWD:ALL'"
+    - lineinfile: "dest=/etc/sudoers line='aca		ALL=(ALL) 	NOPASSWD:ALL'"
+    - lineinfile: "dest=/etc/sudoers line='huyong	ALL=(ALL) 	NOPASSWD:ALL'"
+  handlers:
+    - name: restart sshd
+      service: name=sshd state=restarted
