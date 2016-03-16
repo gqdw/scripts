@@ -9,9 +9,13 @@ def do_with_ps(ps):
 	pid = ps[1]
 	cpu = ps[2]
 	mem = ps[3]
+	vsz = ps[4]
 	command = ps[-1]
-	print user, pid, cpu, mem, command
-
+	f = open('out.txt','a')
+	# print >> f,"%s %s %s %s %s" % (user, pid, cpu, mem, command )
+	f.write("%s %s %s %s %s %s\n" % (user, pid, cpu, mem, command, vsz ))
+	f.close()
+	print "%s %s %s %s %s" % (user, pid, cpu, mem, command )
 
 def main():
 	cmd = 'ps axu'
