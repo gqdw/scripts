@@ -8,7 +8,7 @@ es = Elasticsearch(['http://10.168.105.153'])
 # print es.info()
 # print es.indices
 # create index test-0508
-es.indices.create(index='test-0508')
+es.indices.create(index='test-0508', ignore=400)
 # es.indices.delete('test-0508')
 ids = es.indices.get('*')
 for i in ids:
