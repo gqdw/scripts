@@ -2,6 +2,7 @@
 from datetime import datetime
 from elasticsearch import Elasticsearch
 import datetime
+import logging
 # import requests
 
 # curl -XDELETE '10.24.154.234:9200/logstash-2016.04.10?pretty'
@@ -19,6 +20,12 @@ def log_str():
 	return 'logstash-' + str_d	
 
 def main():
+	# logging.basicConfig(format='%(asctime)s %(message)s')
+	tracer = logging.getLogger('elasticsearch.trace')
+	# formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+	# tracer.setFormatter(formatter)
+	tracer.setLevel(logging.INFO)
+	tracer.addHandler(logging.FileHandler('/tmp/es_trace.log'))
 	es = Elasticsearch(['10.24.154.234:9200'])
 	# ids = es.indices.get('logstash*')
 	s_log = log_str()
