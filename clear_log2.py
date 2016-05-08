@@ -31,6 +31,7 @@ def main():
 	s_log = log_str()
 	print s_log
 	es.indices.delete(s_log, ignore=404)
+	es.indices.delete('logstash-2016.04.13', ignore=404)
 	for i in es.indices.get('logstash*'):
 		print i
 
