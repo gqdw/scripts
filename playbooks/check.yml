@@ -3,8 +3,13 @@
 - hosts: do
   user: aca
   vars:
-    hostname: "{{ ansible_hostname }}"
+    # hostname: "myhostname"
+    # hostname: "{{ ansible_hostname }}"
     server_name: "10.168.158.128"
+  vars_prompt:
+    - name: "hostname"
+      prompt: "enter hostname"
+      private: no
   sudo: yes
   tasks:
     - replace: dest=/etc/ssh/sshd_config regexp='^PasswordAuthentication yes' replace='PasswordAuthentication no'
