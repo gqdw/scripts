@@ -1,0 +1,22 @@
+---
+# - hosts: test
+- hosts: do
+  user: aca
+  vars:
+    hostname: "{{ ansible_hostname }}"
+    server_name: "10.168.158.128"
+  sudo: yes
+  tasks:
+    - replace: dest=/etc/ssh/sshd_config regexp='^PasswordAuthentication yes' replace='PasswordAuthentication no'
+      notify: restart sshd
+    - name: Copy zabbix configuration to /etc/zabbix/zabbix_agentd.conf
+      template: src=templates/zabbix_agentd.j2 dest=/etc/zabbix/zabbix_agentd.conf
+      notify: restart zabbix
+    - name: ensure zabbix running on power
+      service: name=zabbix-agent enabled=yes
+
+  handlers:
+    - name: restart sshd
+      service: name=sshd state=restarted
+    - name: restart zabbix
+      service: name=zabbix-agent state=restarted enabled=yes 
