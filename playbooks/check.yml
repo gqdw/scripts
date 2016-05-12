@@ -12,6 +12,10 @@
       private: no
   sudo: yes
   tasks:
+    - name: change hostname
+      hostname: name="{{ hostname }}"
+    - name: add hosts
+      lineinfile: dest=/etc/hosts line="127.0.0.1 {{ hostname }}"
     - replace: dest=/etc/ssh/sshd_config regexp='^PasswordAuthentication yes' replace='PasswordAuthentication no'
       notify: restart sshd
     - name: Copy zabbix configuration to /etc/zabbix/zabbix_agentd.conf
