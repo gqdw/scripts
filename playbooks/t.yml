@@ -1,0 +1,4 @@
+---
+- hosts: do
+  tasks: 
+    - ping:
