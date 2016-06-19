@@ -1,0 +1,5 @@
+---
+# tasks file for addkeys
+- user: user=aca
+- authorized_key: user=aca key="{{ item }}"
+  with_file: aca.pub 
