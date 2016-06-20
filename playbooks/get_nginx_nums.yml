@@ -1,0 +1,16 @@
+---
+- hosts: test
+  vars: 
+    - tomcatdir: "/opt/apache-tomcat-7.0.69"
+  tasks:
+  - name: get nginx number 
+    shell: "pgrep nginx"
+    register: ret
+
+  #- debug: var=ret
+  - debug: msg={{ ret.stdout_lines|count }}
+  - shell: "echo good"
+    when:  ret.stdout_lines|count  > 5  
+#    - name: kill java if jps number > 2
+#      shell: "kill {{ ret.stdout }}"
+#      when: {{ ret.stdout }} > 1
